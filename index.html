@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Admin</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap');
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: url('https://files.catbox.moe/ttfgu0.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+   .login-box {
+  background: rgba(255, 255, 255, 0.1); /* putih semi transparan */
+  backdrop-filter: blur(10px); /* blur belakang */
+  -webkit-backdrop-filter: blur(10px); /* untuk Safari */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0 8px 21px rgba(0, 0, 0, 0.3);
+}
+
+    .login-box h2 {
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: #ff5e7e;
+      color: white
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .login-box button:hover {
+      background: white;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .bucin-text {
+      color: #fff;
+      font-size: 2rem;
+      max-width: 80%;
+      text-align: center;
+      background: rgba(255,255,255,0.1);
+      padding: 20px 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      backdrop-filter: blur(5px);
+      z-index: 2;
+    }
+
+    .bucin-text span {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5rem;
+      color: #ffe6ea;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 6s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        bottom: -10px;
+        opacity: 0;
+        transform: translateX(0) scale(1) rotate(45deg);
+      }
+      50% {
+        opacity: 1;
+        transform: translateX(-20px) scale(1.2) rotate(45deg);
+      }
+      100% {
+        bottom: 100%;
+        opacity: 0;
+        transform: translateX(20px) scale(0.8) rotate(45deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Login Page -->
+  <div class="login-box" id="login-box">
+    <h2>Login Admin</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">login</button>
+    <p id="error" style="color: pink; margin-top: 10px;"></p>
+  </div>
+
+  <!-- Halaman Isi -->
+  <div class="bucin-text hidden" id="bucin-page">
+    <span>Sayang...</span><br>
+    Aku gak butuh kata-kata puitis, cukup kamu di sampingku, udah bikin semuanya manis.
+  </div>
+
+  <script>
+    function login() {
+      const u = document.getElementById("username").value;
+      const p = document.getElementById("password").value;
+      if (u === "pahri" && p === "nana") {
+        document.getElementById("login-box").style.display = "none";
+        document.getElementById("bucin-page").classList.remove("hidden");
+
+        // Tampilkan hati mengambang
+        for (let i = 0; i < 30; i++) {
+          let heart = document.createElement("div");
+          heart.classList.add("heart");
+          heart.style.left = Math.random() * 100 + "vw";
+          heart.style.animationDelay = Math.random() * 5 + "s";
+          heart.style.opacity = Math.random();
+          heart.style.transform = `scale(${Math.random() * 1.5 + 0.5}) rotate(45deg)`;
+          document.body.appendChild(heart);
+        }
+      } else {
+        document.getElementById("error").innerText = "Username / Password salah 😢";
+      }
+    }
+  </script>
+</body>
+</html>
